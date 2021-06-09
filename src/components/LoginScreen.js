@@ -57,7 +57,7 @@ function LoginScreen(props) {
                                 onChange={handleChange}
                             />
                         </div>
-                        <li className="panelNav"><Button onClick={props.handleLogin} text='Login' /></li>       
+                        <li className="panelNav"><Button type='submit' onClick={props.handleLogin} text='Login' /></li>       
                 </form>
             </div>
             <div className='signUpContainer'>
