@@ -14,9 +14,9 @@ const initialState = {
     albumSelection: 0
 }
 
-function appReducer(state = initialState, action) {
+const appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'user/userLogin': {
+        case 'LOGIN': {
             return {
                 ...state,
                 user: [
@@ -35,6 +35,4 @@ function appReducer(state = initialState, action) {
     }
 }
 
-const rootReducer = combineReducers({});
-
-export default rootReducer;
+export default appReducer;

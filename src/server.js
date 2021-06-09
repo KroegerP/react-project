@@ -1,9 +1,21 @@
+const users = './users.json';
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
 app.use(express.json());
+
+
+let Users = [];
+for (user in users) {
+    Users[user.id] = {
+        id: user['id'],
+        username: user['username'],
+        password: user['password']
+    }
+}
+
 
 app.post('./api/registerUser', (req,res) => {
     console.log('Registering user...', req.body);
@@ -53,6 +65,19 @@ app.get('/api/loginData', (req, res) => {
         joinDate: '05/31/2021'
     };
     res.json(user);
+});
+
+app.post('/api/handleLogin', (req,res) => {
+    if(!req.body.username || !req.body.password) {
+        res.status("400");
+        res.send("Invalid Credentials")
+    } else {
+        Users.filter(function(user) {
+            if(user.username === req.body.username){
+                res.json(req.body)
+            }
+        })
+    }
 });
 
 const port = process.env.PORT || 5000;

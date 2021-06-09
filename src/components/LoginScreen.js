@@ -1,62 +1,88 @@
 import React from 'react';
+import { useState } from 'react';
+import { connect } from 'react-redux';
 import Button from './Button';
 import { Link } from 'react-router-dom';
+import actions from '../redux/actions';
 
-class LoginScreen extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoggedIn: false,
-            username: '',
-            password: ''
-        };
+function LoginScreen(props) {
+    const[loginData, updateLoginData] = useState({
+        username: '',
+        password: ''
+    });
+
+    const handleSubmit = () => {                 // Callback to submit to API
+        fetch('./api/handleLogin', {
+            method: 'POST',
+            body: JSON.stringify(loginData),
+        })
+        .then(loginData => {
+            console.log('User logging in: ', loginData);
+            //props.loginUser();
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    };
+
+    const handleChange = (e) => {
+        updateLoginData({
+            ...loginData,
+            [e.target.name]: e.target.value.trim() //Trim any additional whitespace
+        })
     }
 
-    componentDidMount() {
-        this.setState({ isLoggedIn: this.props.isLoggedIn });
-    }
-
-    onSubmit() {
-    }
-
-    render() {
-        if (this.state.isLoggedIn) {
-            return (<div></div>);
-        }
-        return (
-            <div className="loginScreen">
-                <div className='loginContainer'>
-                    <form className='add-form' onSubmit={this.onSubmit()}>
-                        <h2>Log In</h2>
-                            <div className='form-control'>
-                                <label>Username</label>
-                                <input
-                                    type='text'
-                                    placeholder='Username'
-                                    value={this.state.username}
-                                    onChange={(e) => this.setState({ username: e.target.value })}
-                                />
-                            </div>
-                            <div className='form-control'>
-                                <label>Password</label>
-                                <input
-                                    type='password'
-                                    placeholder='Password'
-                                    value={this.state.password}
-                                    onChange={(e) => this.setState({ password: e.target.value })}
-                                />
-                            </div>
-                            <li className="panelNav"><Link to="/"><Button type='submit' text='Login' onClick={this.props.handleLogin} /></Link></li>       
-                    </form>
-                </div>
-                <div className='signUpContainer'>
-                    <h2>Don't have an Account?</h2>
-                    <br /><br /><br />
-                    <li className="panelNav"><Link to="/signup"><Button text='Sign Up' /></Link></li>
-                </div>
+    return (
+        <div className="loginScreen">
+            <div className='loginContainer'>
+                <form className='add-form' onSubmit={handleSubmit}>
+                    <h2>Log In</h2>
+                        <div className='form-control'>
+                            <label>Username</label>
+                            <input
+                                type='text'
+                                name='username'
+                                placeholder='Username'
+                                value={loginData.username}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className='form-control'>
+                            <label>Password</label>
+                            <input
+                                type='password'
+                                name='password'
+                                placeholder='Password'
+                                value={loginData.password}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <li className="panelNav"><Button onClick={props.handleLogin} text='Login' /></li>       
+                </form>
             </div>
-        );
-    }
+            <div className='signUpContainer'>
+                <h2>Don't have an Account?</h2>
+                <br /><br /><br />
+                <li className="panelNav"><Link to="/signup"><Button text='Sign Up' /></Link></li>
+            </div>
+        </div>
+    );
 }
 
+// const mapStateToProps = (state) => {
+//     return{
+//         id: state.user.id,
+//         username: state.user.username,
+//         alternateName: state.user.alternateName,
+//         dateJoined: state.user.dateJoined,
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//         loginUser: () => dispatch(actions.loginUser())
+//     }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 export default LoginScreen;

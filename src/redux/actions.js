@@ -6,7 +6,7 @@ const Actions = {
   
     formSubmittionStatus: (status) => ({ type: Types.FORM_SUBMITION_STATUS, payload: { status }}),
   
-    login: (user) => ({ type: Types.LOGIN, payload: { user } }),
+    loginUser: (user) => ({ type: Types.LOGIN, payload: { user } }),
 
     signUp: (newUser) => ({type: Types.SIGNUP, payload: {newUser}}),
 }

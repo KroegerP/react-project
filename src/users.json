@@ -1,0 +1,16 @@
+{
+    "Users": [{
+        "id": 1,
+        "username": "swiftarrow4",
+        "alternateName": "Peter Kroeger",
+        "joinDate": "05/31/2021"
+    },
+    {
+        "id": 2,
+        "username": "TryHardNinja01",
+        "alternateName": "Will Kroeger",
+        "joinDate": "06/09/2021"
+    }
+    ]
+
+}

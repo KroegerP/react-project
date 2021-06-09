@@ -5,32 +5,34 @@ import { Link } from 'react-router-dom';
 class RightPanel extends React.Component {
     constructor(props) {
         super(props);
-/*        this.handleLogoutClick = this.handleLogoutClick.bind(this);*/
+        this.onCatalog = this.onCatalog.bind(this);
         this.state = {
-            isLoggedIn: false
+            onCatalog: false
         };
     }
 
-    componentDidMount() {
-        this.setState({ isLoggedIn: this.props.isLoggedIn });
+    onCatalog() {
+        this.setState({ onCatalog: !this.state.onCatalog});
     }
-
-    //handleLogoutClick() {
-    //    this.setState({ isLoggedIn: false });
-    //}
 
     render() {
         let button;
-        if (this.props.isLoggedIn === false) {
-            button = <li className="panelNav"><Link to="/"><Button text='Login' onClick={this.props.handleLogin} /></Link></li>
+        if (!this.props.isLoggedIn) {
+            button = <Link to="/"><Button text='Login' onClick={this.props.handleLogin} /></Link>
         } else {
-            button = <li className="panelNav"><Link to="/"><Button text='Logout' onClick={this.props.handleLogout} /></Link></li>
+            button = <Link to="/"><Button text='Logout' onClick={this.props.handleLogout} /></Link>
+        }
+        let albumButton;
+        if (this.state.onCatalog) {
+            albumButton = <Link to="/"><Button text='Home' onClick={this.onCatalog} /></Link>
+        } else {
+            albumButton = <Link to="/catalog"><Button text='Catalog' onClick={this.onCatalog} /></Link>
         }
         return (
             <div className="RightPanel">
                 <ul>
-                    <li className="panelNav"><Link to="/addalbum"><Button color='blue' text='Add Album'></Button></Link></li>
-                    {button}
+                    <li className="panelNav">{albumButton}</li>
+                    <li className="panelNav">{button}</li>
                 </ul>
             </div>
         );

@@ -7,7 +7,7 @@ const store = createStore(
     composeWithDevTools()
 );
 
-// store.dispatch({ type: 'user/userLogin' });
+// store.dispatch({ type: 'LOGIN' });
 
 
 export default store;

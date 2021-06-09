@@ -1,15 +1,16 @@
-import { BrowserRouter as Router, Switch, Route,withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from './redux/actions';
 import Header from './components/Header';
 import Home from './components/Home';
-import History from './components/History';
+import History from './components/TaskTracker';
 import GlobalStats from './components/GlobalStats';
 import LeftPanel from './components/LeftPanel';
 import RightPanel from './components/RightPanel';
 import LoginScreen from './components/LoginScreen';
 import SignUp from './components/SignUp';
+import AlbumCatalog from './components/AlbumCatalog';
 
 class App extends React.Component {
     constructor(props) {
@@ -129,6 +130,7 @@ class App extends React.Component {
                             <Route exact path="/history" component={History} />
                             <Route exact path="/globalstats" component={GlobalStats} />
                             <Route exact path="/signup" component={SignUp} />
+                            <Route exact path="/catalog" component={AlbumCatalog} />
                         </Switch>
                     </div>
                     <div>

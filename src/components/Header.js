@@ -1,15 +1,13 @@
 import React from 'react';
 import Clock from './Clock';
 
-class Header extends React.Component {
-    render() {
+const Header = ({title}) => {
         return (
             <header className='header'>
-                <h1>{this.props.title}'s Landing Page</h1>
+                <h1>{title}'s Landing Page</h1>
                 <Clock />
             </header>
         )
-    }
 }
 
 //Header.defaultProps = {

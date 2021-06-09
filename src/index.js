@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import './index.css';
-import App from './App'; //App.js is the root App component - everything will be in this root component
+import App from './App'; //App.js is the root App component
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
