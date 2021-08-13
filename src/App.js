@@ -11,6 +11,7 @@ import RightPanel from './components/RightPanel';
 import LoginScreen from './components/LoginScreen';
 import SignUp from './components/SignUp';
 import AlbumCatalog from './components/AlbumCatalog';
+import Substructures from './components/Substructures';
 
 class App extends React.Component {
     constructor(props) {

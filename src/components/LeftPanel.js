@@ -18,6 +18,10 @@ class LeftPanel extends React.Component {
         this.setState({ isHistoryPage: false });
     }
 
+    handleSubstructureClick() {
+        this.setState({})
+    }
+
     render() {
         let button;
         if (this.state.isHistoryPage === true) {
