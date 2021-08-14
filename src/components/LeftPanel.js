@@ -33,7 +33,7 @@ class LeftPanel extends React.Component {
             <div className="LeftPanel">
                 <ul>
                     {button}
-                    <li className="panelNav"><Link to="/globalstats"><Button text='Global Stats' onClick={this.handleHistoryClick} /></Link></li>
+                    <li className="panelNav"><Link to="/globalstats"><Button text='Global Stats' onClick={this.handleHistoryClick} /></Link></li>-
                 </ul>
             </div>
         );
